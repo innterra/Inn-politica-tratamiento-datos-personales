@@ -1128,6 +1128,8 @@
     </footer>
 
     <script>
+        const PAGINAS_VALIDAS = ['home', 'privacy', 'unsubscribe'];
+
         function showPage(pageName) {
             // Ocultar todas las páginas
             const pages = document.querySelectorAll('.page');
@@ -1139,9 +1141,22 @@
                 selectedPage.classList.add('active');
             }
 
+            // Reflejar la página actual en la URL (para poder enlazar directo)
+            if (location.hash.slice(1) !== pageName) {
+                history.pushState(null, '', '#' + pageName);
+            }
+
             // Scroll al inicio
             window.scrollTo(0, 0);
         }
+
+        function mostrarPaginaDesdeHash() {
+            const pagina = location.hash.slice(1);
+            showPage(PAGINAS_VALIDAS.includes(pagina) ? pagina : 'home');
+        }
+
+        window.addEventListener('DOMContentLoaded', mostrarPaginaDesdeHash);
+        window.addEventListener('popstate', mostrarPaginaDesdeHash);
     </script>
 </body>
 </html>
