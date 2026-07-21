@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resiliencia Financiera para el Agro - Seguros Paramétricos e IA</title>
+    <meta name="description" content="Plataforma integral de resiliencia financiera y climática para productores agrícolas colombianos mediante WhatsApp e IA.">
+    <link href="https://fonts.googleapis.com/css2?family=Gotham:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        /* Colores Innterra */
+        :root {
+            --color-innterra-primary: #2D7D34;
+            --color-innterra-secondary: #647E92;
+            --color-accent: #4CAF50;
+            --color-light-bg: #f0f5eb;
+            --color-text-dark: #1a1a1a;
+            --color-text-light: #666;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-innterra-primary) 0%, #1e5a26 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-coffee {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            opacity: 0.9;
+            margin: 2px 0 0 0;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Página de Inicio */
+        .hero {
+            background: linear-gradient(135deg, var(--color-innterra-primary) 0%, #1e5a26 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--color-innterra-primary);
+            padding: 13px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--color-innterra-primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--color-accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .feature {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--color-innterra-primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--color-innterra-primary);
+            font-weight: 600;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .info-box {
+            background: var(--color-light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--color-innterra-primary);
+            margin: 30px 0;
+        }
+
+        .info-box h3 {
+            color: var(--color-innterra-primary);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            color: var(--color-text-dark);
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--color-accent);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-innterra-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: var(--color-light-bg);
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .partners-title {
+            text-align: center;
+            color: var(--color-innterra-primary);
+            font-size: 28px;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .partner-logo {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: var(--color-innterra-primary);
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+
+        .partner-logo img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .partner-logo-text {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--color-innterra-primary);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a3a1f 0%, var(--color-innterra-secondary) 100%);
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 13px;
+            line-height: 1.8;
+            opacity: 0.85;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Páginas de contenido */
+        .content-page {
+            background: white;
+            padding: 60px 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .content-page h1 {
+            color: var(--color-innterra-primary);
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .content-page h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .content-page h2 {
+            color: var(--color-innterra-primary);
+            font-size: 26px;
+            margin-top: 45px;
+            margin-bottom: 22px;
+            font-weight: 600;
+            border-left: 4px solid var(--color-accent);
+            padding-left: 15px;
+        }
+
+        .content-page h3 {
+            color: var(--color-text-dark);
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .content-page p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--color-text-dark);
+            font-size: 15px;
+        }
+
+        .content-page ul, .content-page ol {
+            margin: 20px 0 20px 30px;
+            color: var(--color-text-dark);
+        }
+
+        .content-page li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:first-child {
+            background: var(--color-light-bg);
+        }
+
+        table td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                font-size: 13px;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 8px 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .features-grid {
+                gap: 20px;
+            }
+
+            .content-page h1 {
+                font-size: 32px;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="logo-coffee" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Hoja -->
+                    <path d="M35 20C25 25, 20 40, 25 55C30 70, 45 75, 55 65C60 55, 58 35, 50 25Z" fill="#4CAF50" stroke="white" stroke-width="2"/>
+                    <!-- Vena principal -->
+                    <path d="M40 25Q45 40, 50 60" stroke="white" stroke-width="1.5" fill="none"/>
+                    <!-- Grano -->
+                    <circle cx="50" cy="45" r="12" fill="#8B4513"/>
+                    <!-- Reflejo -->
+                    <circle cx="48" cy="42" r="4" fill="rgba(255,255,255,0.3)"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>Resiliencia Financiera</h1>
+                    <p>Innovación Tecnológica Agrícola</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#" onclick="showPage('home')">Inicio</a>
+                <a href="#" onclick="showPage('privacy')">Política de Privacidad</a>
+                <a href="#" onclick="showPage('unsubscribe')">Solicitar Baja</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PÁGINA DE INICIO -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <svg class="hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Tallo principal -->
+                    <line x1="50" y1="80" x2="50" y2="20" stroke="white" stroke-width="3"/>
+                    <!-- Rama izquierda inferior -->
+                    <line x1="50" y1="70" x2="30" y2="75" stroke="white" stroke-width="2"/>
+                    <!-- Rama derecha inferior -->
+                    <line x1="50" y1="65" x2="70" y2="72" stroke="white" stroke-width="2"/>
+                    <!-- Rama izquierda media -->
+                    <line x1="50" y1="50" x2="25" y2="40" stroke="white" stroke-width="2"/>
+                    <!-- Rama derecha media -->
+                    <line x1="50" y1="48" x2="75" y2="35" stroke="white" stroke-width="2"/>
+                    <!-- Hojas -->
+                    <ellipse cx="28" cy="72" rx="8" ry="12" fill="white" opacity="0.9"/>
+                    <ellipse cx="72" cy="68" rx="8" ry="12" fill="white" opacity="0.9"/>
+                    <ellipse cx="22" cy="38" rx="7" ry="11" fill="white" opacity="0.85"/>
+                    <ellipse cx="78" cy="32" rx="7" ry="11" fill="white" opacity="0.85"/>
+                    <!-- Frutos (cerezas) -->
+                    <circle cx="50" cy="60" r="5" fill="#FF6B6B"/>
+                    <circle cx="50" cy="75" r="4" fill="#E63946"/>
+                </svg>
+                <h1>Resiliencia Financiera para el Agro</h1>
+                <p>Plataforma integral de educación financiera, monitoreo climático y seguro paramétrico para productores agrícolas colombianos</p>
+            </div>
+        </div>
+
+        <div class="container section">
+            <h2 class="section-title">Acerca del Proyecto</h2>
+            <div class="info-box">
+                <p>
+                    Resiliencia Financiera es un piloto desarrollado por <strong>Innterra</strong>, diseñado para transformar la forma en que los productores acceden a servicios de seguros tradicionales, seguros paramétricos, educación financiera y alertas climáticas a través de WhatsApp. Con visión de escalabilidad, esta plataforma está construida como base tecnológica para acercar instrumentos financieros de aseguramiento agrícola a productores de cualquier cultivo en Colombia.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">6.500+</div>
+                    <div class="stat-label">Predios Monitoreados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Monitoreo Satelital</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">IA</div>
+                    <div class="stat-label">Conversacional</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">WhatsApp</div>
+                    <div class="stat-label">Canal Principal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Acceso Digital</h3>
+                    <p>Interacción bidireccional a través de WhatsApp para consultas, registros y servicio al cliente sin barreras tecnológicas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛰️</div>
+                    <h3>Monitoreo Climático</h3>
+                    <p>Alertas satelitales en tiempo real sobre condiciones climáticas, exceso de lluvia, sequía y estrés térmico en tu predio.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <h3>Educación Financiera</h3>
+                    <p>Microlearning diseñado para pequeños productores sobre seguros paramétricos, coberturas y gestión de riesgo climático.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguro Paramétrico</h3>
+                    <p>Cobertura automática ante eventos climáticos verificados por satélite, sin necesidad de peritaje presencial.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Información Clara</h3>
+                    <p>Explicaciones en lenguaje natural sobre disparadores satelitales, estado de póliza y recomendaciones agronómicas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Liquidación Rápida</h3>
+                    <p>Pagos activados automáticamente cuando se detectan eventos climáticos, acelerando la recuperación financiera.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <div class="info-box">
+                <h3>Innterra</h3>
+                <p>Empresa especializada en tecnología geoespacial y soluciones de resiliencia climática y financiera para el sector agrícola. Desarrollamos la plataforma InnTrack de monitoreo satelital y la capa de IA conversacional que alimenta Resiliencia Financiera para el Agro, con arquitectura escalable para múltiples cultivos y regiones.</p>
+            </div>
+            <div class="info-box">
+                <h3>Nuestra Misión</h3>
+                <p>Transformar la forma en que los productores agrícolas colombianos acceden a instrumentos financieros, seguros tradicionales, seguros paramétricos y educación financiera. Nuestra plataforma está diseñada para escalar a cualquier tipo de cultivo, adaptando soluciones de monitoreo climático, alertas automáticas y recomendaciones según cada realidad agrícola regional.</p>
+            </div>
+        </div>
+
+        <div class="container section">
+            <h2 class="section-title">Protección de tus Datos</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: var(--color-text-light); font-size: 16px;">
+                Tomamos muy en serio la privacidad y seguridad de tu información. Todos tus datos personales se tratan
+                de conformidad con la legislación colombiana de protección de datos y con los más altos estándares de confidencialidad.
+            </p>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" onclick="showPage('privacy')" class="cta-button">Leer Política de Privacidad</a>
+            </div>
+        </div>
+
+        <!-- Sección de Aliados -->
+        <div class="partners-section">
+            <div class="container">
+                <h3 class="partners-title">Desarrollado por</h3>
+                <div class="partners-grid" style="max-width: 300px; margin: 0 auto;">
+                    <div class="partner-logo">
+                        <div class="partner-logo-text">
+                            <strong>Innterra</strong><br>
+                            <small>Innovación Tecnológica</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section" style="border-top: 1px solid #eee; padding-top: 60px;">
+            <h2 class="section-title">¿Cómo Contactarnos?</h2>
+            <div class="info-box">
+                <p><strong>Para consultas generales:</strong> Puedes comunicarte directamente a través de WhatsApp donde recibirás soporte inmediato de nuestro equipo.</p>
+                <p style="margin-top: 15px;"><strong>Para solicitar tu baja o más información:</strong> <a href="#" onclick="showPage('unsubscribe')" style="color: var(--color-innterra-primary); font-weight: 600; text-decoration: none;">Consulta aquí el procedimiento completo</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA DE POLÍTICA DE PRIVACIDAD -->
+    <div id="privacy" class="page">
+        <div class="content-page container">
+            <h1>Política de Tratamiento de Datos Personales</h1>
+
+            <p><strong>Versión efectiva: Julio de 2026</strong></p>
+
+            <div class="info-box">
+                <p>
+                    Esta política describe cómo Innterra S.A.S recopila, utiliza, protege y gestiona tus datos personales
+                    en el contexto de Resiliencia Financiera para el Agro, en cumplimiento con la Ley 1581 de 2012, sus decretos
+                    reglamentarios, y las expectativas de plataformas como Meta para WhatsApp Business.
+                </p>
+            </div>
+
+            <h2>1. Identificación del Responsable del Tratamiento</h2>
+            <ul style="list-style: none;">
+                <li><strong>Empresa:</strong> INNTERRA S.A.S</li>
+                <li><strong>NIT:</strong> 901401254</li>
+                <li><strong>Dirección:</strong> CL 35AA N° 98-35 BL 2 AP 302, Medellín - Antioquia</li>
+                <li><strong>Correo electrónico:</strong> administrativo@inn.com.co</li>
+                <li><strong>Teléfono:</strong> 323-2330354</li>
+                <li><strong>Página Web:</strong> www.inn.com.co</li>
+                <li style="margin-top: 15px;"><strong>Oficial de Protección de Datos (DPO):</strong> Disponible en administrativo@inn.com.co</li>
+            </ul>
+
+            <h2>2. Marco Legal Aplicable</h2>
+            <p>
+                Esta política se fundamenta en la normatividad colombiana e internacional de protección de datos:
+            </p>
+            <ul>
+                <li>Ley 1581 de 2012 - Protección de Datos Personales en Colombia</li>
+                <li>Decreto 1377 de 2013 - Reglamentación de autorización y consentimiento</li>
+                <li>Decreto 1074 de 2015 - Compilación de normas de protección de datos</li>
+                <li>Decreto 886 de 2014 - Registro Nacional de Bases de Datos</li>
+                <li>Constitución Política de Colombia (Artículos 15 y 34 - Habeas Data)</li>
+                <li>Términos de Servicio de WhatsApp Business Platform (Meta)</li>
+                <li>Regulaciones internacionales aplicables para transferencias de datos</li>
+            </ul>
+
+            <h2>3. Principios Rectores del Tratamiento</h2>
+            <p>
+                Innterra aplica los siguientes principios en la gestión de tus datos personales:
+            </p>
+            <ul>
+                <li><strong>Legalidad:</strong> Todo tratamiento tiene base legal explícita</li>
+                <li><strong>Finalidad:</strong> Los datos se tratan solo para propósitos previamente informados</li>
+                <li><strong>Libertad:</strong> El consentimiento es libre, voluntario e informado</li>
+                <li><strong>Veracidad:</strong> La información debe ser exacta, completa y actualizada</li>
+                <li><strong>Transparencia:</strong> Informamos claramente sobre el uso y destino de tus datos</li>
+                <li><strong>Acceso Restringido:</strong> Solo personal autorizado accede a datos personales</li>
+                <li><strong>Seguridad:</strong> Implementamos medidas técnicas y administrativas de protección</li>
+                <li><strong>Confidencialidad:</strong> Mantenemos la privacidad de tu información en todo momento</li>
+            </ul>
+
+            <h2>4. Finalidades del Tratamiento</h2>
+            <p>
+                Innterra recopila y trata tus datos personales con las siguientes finalidades operativas:
+            </p>
+            <ul>
+                <li><strong>Prestación de servicios:</strong> Vinculación, registro y acceso a Resiliencia Financiera para el Agro</li>
+                <li><strong>Verificación de identidad:</strong> Validación del control del número de WhatsApp mediante OTP (One-Time Password)</li>
+                <li><strong>Seguro paramétrico:</strong> Emisión, gestión, monitoreo y liquidación de pólizas de seguros agrícolas</li>
+                <li><strong>Monitoreo climático:</strong> Envío de alertas satelitales personalizadas, recomendaciones agronómicas y contenido educativo</li>
+                <li><strong>Servicio al cliente:</strong> Atención técnica, respuesta a consultas y resolución de incidentes</li>
+                <li><strong>Gestión financiera:</strong> Facturación, gestión de cobros y obligaciones financieras derivadas de servicios</li>
+                <li><strong>Análisis y mejora:</strong> Medición de satisfacción, desempeño de la plataforma y generación de reportes agregados</li>
+                <li><strong>Cumplimiento regulatorio:</strong> Obligaciones legales, auditorías, reporte a autoridades competentes</li>
+                <li><strong>Comunicaciones operativas:</strong> Notificaciones sobre cambios en servicio, actualizaciones de seguridad y avisos legales</li>
+            </ul>
+
+            <h2>5. Datos Personales Recolectados</h2>
+            <p>
+                Innterra recolecta únicamente datos estrictamente necesarios para las finalidades descritas:
+            </p>
+            <ul>
+                <li><strong>Identificación:</strong> Nombre completo, número y tipo de documento de identidad</li>
+                <li><strong>Información de contacto:</strong> Número de teléfono WhatsApp, correo electrónico (opcional)</li>
+                <li><strong>Ubicación del predio:</strong> Dirección, municipio, departamento, coordenadas geográficas para monitoreo satelital</li>
+                <li><strong>Información agropecuaria:</strong> Tipo de cultivo, tamaño de la parcela, información del ciclo productivo, datos relevantes para validación de coberturas</li>
+                <li><strong>Información financiera:</strong> Datos bancarios mínimos solo cuando es necesario para pagos y liquidación de seguros</li>
+                <li><strong>Trazabilidad de consentimiento:</strong> Fechas de autorización, aceptación de términos, registros de actividad en la plataforma, interacciones por WhatsApp</li>
+                <li><strong>Metadatos operativos:</strong> Fecha y hora de último acceso, dispositivos utilizados, estado de la cuenta</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <strong>Datos NO Recolectados:</strong> No se recopilan datos sensibles (biometría avanzada, datos de salud, preferencias políticas, religión, orientación sexual, información sobre menores) excepto cuando sea estrictamente necesario para la operación del seguro paramétrico y con consentimiento expreso conforme a ley.
+            </p>
+
+            <h2>6. Base Legal del Tratamiento</h2>
+            <p>
+                El tratamiento de tus datos se fundamenta en:
+            </p>
+            <ul>
+                <li><strong>Consentimiento informado del titular:</strong> Autorización explícita y verificable proporcionada durante el registro en WhatsApp</li>
+                <li><strong>Ejecución de contrato:</strong> Necesario para cumplir con la relación de prestación de servicios y seguro paramétrico</li>
+                <li><strong>Obligación legal:</strong> Cumplimiento de regulaciones de protección de datos, normatividad aseguradora y requerimientos de autoridades</li>
+                <li><strong>Interés legítimo:</strong> Mejora continua del servicio, evaluación de impacto, seguridad operativa y prevención de fraude</li>
+            </ul>
+
+            <h2>7. Recolección de Consentimiento Previo</h2>
+            <p>
+                Antes de recopilar tus datos personales, Innterra solicita tu autorización mediante:
+            </p>
+            <ul>
+                <li>Mensaje informativo en WhatsApp que explica la finalidad específica del tratamiento</li>
+                <li>Solicitud explícita de consentimiento que debes aceptar activamente (no se presume de silencios)</li>
+                <li>Aviso de privacidad claro, accesible y en lenguaje simple</li>
+                <li>Referencia a esta política completa disponible en línea</li>
+                <li>Información sobre tus derechos como titular de datos personales</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <strong>Nota importante:</strong> Tu silencio, inactividad o simple registro no se interpretan como consentimiento. Debes realizar una acción explícita y verificable para autorizar el tratamiento.
+            </p>
+
+            <h2>8. Compartición de Datos con Terceros</h2>
+            <p>
+                Tus datos personales solo se comparten con terceros autorizados cuando es necesario para:
+            </p>
+            <ul>
+                <li><strong>Entidades aseguradoras:</strong> Datos mínimos necesarios para emisión, operación y liquidación de pólizas de seguros paramétricos</li>
+                <li><strong>Meta/WhatsApp:</strong> Plataforma de mensajería que procesa los mensajes con encriptación end-to-end. Meta procesa solo metadatos operativos (fecha, hora, tipo de mensaje)</li>
+                <li><strong>Proveedores de infraestructura:</strong> Servicios de almacenamiento cloud (Microsoft 365), análisis de datos y hosting, bajo acuerdos de confidencialidad</li>
+                <li><strong>Autoridades públicas:</strong> Cuando lo exija la ley (DIAN, autoridades judiciales, organismos de control, policía)</li>
+                <li><strong>Personal autorizado de Innterra:</strong> Solo empleados y colaboradores que requieran acceso para cumplir sus funciones</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <strong>Prohibiciones y garantías:</strong> Innterra NO vende, licencia, transmite ni divulga datos personales con fines publicitarios o comerciales. Todos los terceros están obligados contractualmente a proteger tus datos conforme a esta política y la ley colombiana.
+            </p>
+
+            <h2>9. Retención de Datos Personales</h2>
+            <p>
+                Innterra retiene tus datos personales durante los siguientes plazos:
+            </p>
+            <ul>
+                <li><strong>Mensajes WhatsApp y comunicaciones:</strong> Máximo 30 días (requerimiento de Meta para funcionalidad de servicio)</li>
+                <li><strong>Datos de registro y perfil del usuario:</strong> Mientras dure la relación contractual más 5 años adicionales para consultas y auditoría</li>
+                <li><strong>Información de pólizas emitidas:</strong> Mínimo 7 años (cumplimiento de regulación aseguradora y fiscal)</li>
+                <li><strong>Registros de transacciones y pagos:</strong> Mínimo 7 años (auditoría, compliance y cumplimiento regulatorio)</li>
+                <li><strong>Datos de empleados, exempleados y proveedores:</strong> Conforme a regulación laboral y fiscal (hasta 90 años después de finalización de relación)</li>
+                <li><strong>Datos de obligaciones legales:</strong> Los que la ley expresamente exija conservar (según sector regulatorio)</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                Una vez cumplida la finalidad contractual y vencido el plazo de retención, los datos se eliminan de forma segura mediante procedimientos certificados. Si solicitas cancelación de datos, se eliminan conforme a procedimientos de seguridad, salvo obligaciones legales expresas de retención.
+            </p>
+
+            <h2>10. Medidas de Seguridad y Protección</h2>
+            <p>
+                Innterra implementa medidas técnicas, administrativas y físicas para proteger tus datos:
+            </p>
+            <ul>
+                <li>Encriptación de datos en tránsito (HTTPS/TLS 1.2 o superior) y en reposo (AES-256 o equivalente)</li>
+                <li>Autenticación de acceso con usuario, contraseña y verificación de identidad</li>
+                <li>Control de acceso basado en roles y principio de mínimo privilegio (RBAC)</li>
+                <li>Almacenamiento en servidores de Microsoft 365 con certificaciones internacionales (ISO 27001, SOC 2 Type II)</li>
+                <li>Auditorías periódicas internas y externas de seguridad e integridad de datos</li>
+                <li>Monitoreo continuo de vulnerabilidades y actualizaciones de seguridad</li>
+                <li>Capacitación obligatoria en protección de datos y seguridad de la información para todo el personal</li>
+                <li>Protocolos de respuesta ante incidentes de seguridad o acceso no autorizado</li>
+                <li>Cláusulas de confidencialidad en todos los contratos de empleados y proveedores</li>
+                <li>Logs de auditoría y trazabilidad completa de accesos y modificaciones de datos</li>
+            </ul>
+
+            <h2>11. Tus Derechos como Titular de Datos</h2>
+            <p>
+                Conforme a la Ley 1581 de 2012, tienes los siguientes derechos:
+            </p>
+            <ul>
+                <li><strong>Acceso:</strong> Solicitar y recibir copia de todos tus datos personales sin costo (una vez por mes calendario)</li>
+                <li><strong>Rectificación:</strong> Corregir datos inexactos, incompletos, fraccionados o desactualizados</li>
+                <li><strong>Cancelación (Derecho al Olvido):</strong> Solicitar eliminación de datos cuando finalice la finalidad contractual, salvo obligaciones legales de retención</li>
+                <li><strong>Oposición:</strong> Oponerme al tratamiento de datos para fines específicos, en particular para marketing</li>
+                <li><strong>Portabilidad:</strong> Recibir mis datos en formato estructurado y transportable</li>
+                <li><strong>Suspensión temporal:</strong> Cuando se presuma un tratamiento indebido durante la investigación</li>
+                <li><strong>No discriminación:</strong> No seré discriminado, bloqueado ni penalizado por ejercer mis derechos</li>
+                <li><strong>Reclamo ante autoridad:</strong> Presentar denuncias ante la Superintendencia de Industria y Comercio (SIC) por incumplimiento</li>
+            </ul>
+
+            <h2>12. Procedimientos para Ejercer Tus Derechos</h2>
+
+            <h3>Consultas sobre tus datos:</h3>
+            <ul>
+                <li>Envía un mensaje por WhatsApp indicando "Solicito acceso a mis datos"</li>
+                <li>Proporciona: nombre completo, número de documento, número de teléfono</li>
+                <li>Tiempo de respuesta: máximo 10 días hábiles</li>
+                <li>Costo: Sin cargo (una consulta por mes calendario; consultas adicionales pueden generar gastos de envío)</li>
+            </ul>
+
+            <h3>Rectificación de datos incorrectos:</h3>
+            <ul>
+                <li>Envía mensaje por WhatsApp: "Solicito rectificación de datos" + descripción específica del error</li>
+                <li>Adjunta fotografía de tu documento de identidad si es necesario</li>
+                <li>Tiempo de respuesta: máximo 15 días hábiles desde recepción del reclamo</li>
+            </ul>
+
+            <h3>Cancelación o supresión de datos:</h3>
+            <ul>
+                <li>Envía mensaje por WhatsApp: "Solicito cancelación de mis datos"</li>
+                <li>Proporciona identificación y motivo de la solicitud (opcional)</li>
+                <li>Se procesará conforme a procedimientos de seguridad, respetando obligaciones legales de retención</li>
+                <li>Tiempo de respuesta: máximo 15 días hábiles</li>
+            </ul>
+
+            <h3>Canales disponibles (todos sin costo):</h3>
+            <ul>
+                <li>WhatsApp del programa Resiliencia Financiera (respuesta inmediata)</li>
+                <li>Correo: administrativo@inn.com.co</li>
+                <li>Teléfono: 323-2330354</li>
+                <li>Dirección: CL 35AA N° 98-35 BL 2 AP 302, Medellín - Antioquia</li>
+            </ul>
+
+            <h2>13. Reclamos y Escalamiento</h2>
+            <p>
+                Si consideras que tus derechos han sido vulnerados:
+            </p>
+            <ul>
+                <li>Envía un reclamo detallado por WhatsApp o correo con: descripción de los hechos, documento de identidad, documentos de prueba</li>
+                <li>Innterra incluirá "reclamo en trámite" en tus registros dentro de 2 días hábiles</li>
+                <li>Tiempo de resolución: máximo 15 días hábiles desde recepción</li>
+                <li>Si no se resuelve satisfactoriamente, puedes escalar ante la Superintendencia de Industria y Comercio (SIC)</li>
+            </ul>
+
+            <h2>14. Derecho a Reclamar ante la SIC</h2>
+            <p>
+                Si consideras que Innterra ha incumplido la Ley 1581 de 2012 o sus decretos reglamentarios:
+            </p>
+            <ul>
+                <li><strong>Superintendencia de Industria y Comercio (SIC)</strong></li>
+                <li>Sitio web: www.sic.gov.co</li>
+                <li>Puedes presentar reclamo de forma gratuita y sin necesidad de abogado</li>
+                <li>Tiempo de respuesta por parte de SIC: conforme a procedimientos administrativos</li>
+            </ul>
+
+            <h2>15. Transferencias Internacionales de Datos</h2>
+            <p>
+                Innterra puede transferir datos a países fuera de Colombia únicamente cuando:
+            </p>
+            <ul>
+                <li>Haya obtenido tu consentimiento previo e informado</li>
+                <li>Sea necesario para ejecutar contratos (ej: servicios en la nube de Microsoft 365)</li>
+                <li>Exista garantía de protección equivalente a la ley colombiana</li>
+                <li>Sea exigido por ley</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                Meta/WhatsApp procesa algunos metadatos en servidores internacionales. Sin embargo, la información se encripta en tránsito y Innterra retiene el control de acceso sobre tus datos personales identificables.
+            </p>
+
+            <h2>16. Cambios a Esta Política</h2>
+            <p>
+                Innterra se reserva el derecho de actualizar esta política cuando sea necesario. En caso de cambios significativos:
+            </p>
+            <ul>
+                <li>Se te notificará por WhatsApp o correo con tiempo suficiente</li>
+                <li>La versión actualizada se publicará en este sitio web</li>
+                <li>La fecha de "Última actualización" se modificará en el encabezado</li>
+                <li>El uso continuado del servicio implica aceptación de los cambios</li>
+            </ul>
+
+            <h2>17. Información de Contacto</h2>
+            <p>
+                Para cualquier pregunta sobre esta política o sobre el tratamiento de tus datos:
+            </p>
+            <ul style="list-style: none;">
+                <li>📱 <strong>WhatsApp:</strong> Canal directo del programa (respuesta en máximo 24 horas)</li>
+                <li>📧 <strong>Correo:</strong> administrativo@inn.com.co</li>
+                <li>📞 <strong>Teléfono:</strong> 323-2330354</li>
+                <li>🏢 <strong>Dirección:</strong> CL 35AA N° 98-35 BL 2 AP 302, Medellín - Antioquia</li>
+                <li>👤 <strong>Oficial de Protección de Datos (DPO):</strong> administrativo@inn.com.co</li>
+            </ul>
+
+            <h2>18. Vigencia de Esta Política</h2>
+            <p>
+                <strong>Fecha de creación:</strong> Julio de 2026<br>
+                <strong>Fecha de entrada en vigencia:</strong> Julio de 2026<br>
+                <strong>Última actualización:</strong> Julio de 2026
+            </p>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; text-align: center;">
+                <a href="#" onclick="showPage('home')" class="cta-button">Volver a Inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA DE SOLICITUD DE BAJA -->
+    <div id="unsubscribe" class="page">
+        <div class="content-page container">
+            <h1>Solicitud de Baja / Cancelación del Programa</h1>
+
+            <p><strong>Procedimiento para cancelar tu participación en Resiliencia Financiera para el Agro</strong></p>
+
+            <h2>1. Tu Derecho a Solicitar Baja o Cancelación</h2>
+            <p>
+                Conforme a la Ley 1581 de 2012 (Protección de Datos Personales) y a los términos de Meta para WhatsApp Business,
+                tienes derecho absoluto a:
+            </p>
+            <ul>
+                <li>Solicitar tu baja o cancelación del programa en cualquier momento</li>
+                <li>Revocar tu consentimiento para el tratamiento de datos personales</li>
+                <li>No recibir más mensajes, alertas o comunicaciones del programa</li>
+                <li>No ser discriminado por ejercer este derecho</li>
+                <li><strong>No necesitas justificación ni autorización de terceros</strong></li>
+            </ul>
+
+            <h2>2. Diferencia entre Baja del Programa y Cancelación de Datos</h2>
+
+            <h3>Baja del Programa (Opt-out de Mensajes)</h3>
+            <p>
+                Dejarás de recibir mensajes, alertas y comunicaciones, pero algunos datos se conservan por obligación legal:
+            </p>
+            <ul>
+                <li>✓ Dejas de recibir mensajes WhatsApp, alertas climáticas y contenido educativo</li>
+                <li>✓ Tu cuenta se marca como inactiva</li>
+                <li>✗ Se conservan registros de transacciones y pólizas por 7 años (auditoría, regulación aseguradora)</li>
+                <li>✗ Pólizas activas permanecen vigentes hasta vencimiento</li>
+            </ul>
+
+            <h3>Cancelación de Datos (Derecho al Olvido)</h3>
+            <p>
+                Solicitud de eliminación total de datos personales, sujeta a obligaciones legales:
+            </p>
+            <ul>
+                <li>✓ Eliminación de datos de contacto, ubicación, información personal identificable</li>
+                <li>✗ Se conservan registros agregados y anonimizados (no identificables contigo)</li>
+                <li>✗ Información de pólizas y transacciones se conserva por regulación aseguradora (7 años)</li>
+                <li>✗ Información tributaria se conserva por regulación fiscal</li>
+            </ul>
+
+            <h2>3. ¿Qué Sucede Cuando Solicitas Baja?</h2>
+
+            <h3>Inmediato (0-24 horas):</h3>
+            <ul>
+                <li>Tu solicitud es registrada y verificada</li>
+                <li>Recibes confirmación de recepción con número de referencia</li>
+                <li>Se suspende el envío de mensajes nuevos</li>
+            </ul>
+
+            <h3>A corto plazo (1-5 días hábiles):</h3>
+            <ul>
+                <li>Tu perfil se marca como inactivo</li>
+                <li>Dejas de recibir alertas climáticas, educación financiera y notificaciones operativas</li>
+                <li>Tu número de WhatsApp se retira de listas de envío</li>
+                <li>Recibes confirmación final de que tu baja está completa</li>
+            </ul>
+
+            <h3>Pólizas y Pagos:</h3>
+            <ul>
+                <li><strong>Pólizas activas:</strong> Permanecen vigentes hasta su fecha natural de vencimiento</li>
+                <li><strong>Monitoreo:</strong> Continuamos monitoreando eventos climáticos en tu predio si hay pólizas activas</li>
+                <li><strong>Pagos de seguros:</strong> Si ocurre un evento cubierto, recibirás la notificación y pago conforme al contrato</li>
+                <li><strong>Nuevas pólizas:</strong> No se emitirán nuevas coberturas a tu nombre</li>
+            </ul>
+
+            <h2>4. Procedimiento Paso a Paso</h2>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 2px solid var(--color-innterra-primary);">
+                <h3 style="color: var(--color-innterra-primary); margin-top: 0;">Opción 1: Solicitud por WhatsApp (Recomendado)</h3>
+
+                <p><strong>Paso 1: Envía tu solicitud clara</strong></p>
+                <p style="background: var(--color-light-bg); padding: 12px; border-radius: 4px; font-family: monospace; margin: 10px 0;">
+                    "Deseo solicitar mi baja del programa Resiliencia Financiera para el Agro"
+                </p>
+
+                <p><strong>Paso 2: Proporciona tu identificación</strong></p>
+                <ul style="font-size: 14px;">
+                    <li>Nombre completo</li>
+                    <li>Número de documento de identidad</li>
+                    <li>Número de teléfono asociado a la cuenta</li>
+                </ul>
+
+                <p><strong>Paso 3: Plazos garantizados</strong></p>
+                <ul style="font-size: 14px;">
+                    <li>Confirmación de recepción: máximo 24 horas</li>
+                    <li>Desactivación: máximo 5 días hábiles</li>
+                </ul>
+            </div>
+
+            <h2>5. Contacto para Baja</h2>
+
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 15px;"><strong>📱 WhatsApp (recomendado):</strong> Canal directo del programa - respuesta inmediata</li>
+                <li style="margin-bottom: 15px;"><strong>📧 Correo electrónico:</strong> administrativo@inn.com.co</li>
+                <li style="margin-bottom: 15px;"><strong>📞 Teléfono:</strong> 323-2330354</li>
+                <li><strong>🏢 Dirección:</strong> CL 35AA N° 98-35 BL 2 AP 302, Medellín - Antioquia</li>
+            </ul>
+
+            <div style="background: var(--color-light-bg); padding: 25px; border-radius: 8px; margin-top: 40px; border-left: 4px solid var(--color-innterra-primary);">
+                <h3 style="color: var(--color-innterra-primary); margin-top: 0;">💡 Recuerda</h3>
+                <p style="margin: 10px 0;">
+                    Tu baja es tu <strong>derecho absoluto</strong> y será respetada sin excepciones. Procesaremos tu solicitud
+                    con la máxima celeridad. Queremos que quienes participen en Resiliencia Financiera para el Agro estén aquí porque encuentran valor
+                    en el servicio, no por obligación.
+                </p>
+            </div>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; text-align: center;">
+                <a href="#" onclick="showPage('home')" class="cta-button">Volver a Inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sobre Resiliencia Financiera</h4>
+                <p>Plataforma de innovación financiera y adaptación al cambio climático para productores agrícolas colombianos, desarrollada por Innterra. Diseñada como base tecnológica escalable para múltiples cultivos.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <a href="#" onclick="showPage('home')">Inicio</a><br>
+                <a href="#" onclick="showPage('privacy')">Política de Privacidad</a><br>
+                <a href="#" onclick="showPage('unsubscribe')">Solicitar Baja</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Innterra S.A.S<br>
+                CL 35AA N° 98-35 BL 2 AP 302<br>
+                Medellín, Antioquia<br>
+                <strong>administrativo@inn.com.co</strong></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Resiliencia Financiera para el Agro | Powered by Innterra | Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageName) {
+            // Ocultar todas las páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Mostrar la página seleccionada
+            const selectedPage = document.getElementById(pageName);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
