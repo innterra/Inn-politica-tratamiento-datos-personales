@@ -1155,6 +1155,16 @@
             showPage(PAGINAS_VALIDAS.includes(pagina) ? pagina : 'home');
         }
 
+        // Evita que los enlaces href="#" naveguen de verdad después de que
+        // showPage() ya actualizó el hash -- si no, el navegador resetea el
+        // hash a vacío justo después, dispara popstate, y vuelve a "home".
+        document.addEventListener('click', function (e) {
+            const anchor = e.target.closest('a[href="#"]');
+            if (anchor) {
+                e.preventDefault();
+            }
+        });
+
         window.addEventListener('DOMContentLoaded', mostrarPaginaDesdeHash);
         window.addEventListener('popstate', mostrarPaginaDesdeHash);
     </script>
